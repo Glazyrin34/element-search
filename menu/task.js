@@ -1,3 +1,5 @@
+"use strict";
+
 (() => {
     const menu = document.body.querySelectorAll(".menu__link");
     for (let i = 0; i < menu.length; i++) {

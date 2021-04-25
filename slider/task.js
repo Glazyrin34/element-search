@@ -1,3 +1,5 @@
+"use strict";
+
 (() => {
     let currentSlide = 0;
     const sliderPrev = document.body.querySelector(".slider__arrow_prev");

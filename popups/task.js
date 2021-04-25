@@ -1,3 +1,5 @@
+"use strict";
+
 (() => {
     const windowOne = document.getElementById("modal_main");
     windowOne.classList.add("modal_active");
