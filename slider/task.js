@@ -1,36 +1,29 @@
 "use strict";
 
-(() => {
-    let currentSlide = 0;
-    const sliderPrev = document.body.querySelector(".slider__arrow_prev");
-    sliderPrev.onclick = function () {
-        const menu = document.body.querySelectorAll(".slider__item");
-        if (currentSlide == 0) {
-            menu[currentSlide].classList.remove('slider__item_active')
-            currentSlide = 4;
-            menu[currentSlide].classList.add('slider__item_active')
-        } else {
-            currentSlide -= 1;
-            menu[currentSlide].classList.add('slider__item_active')
-            let current = currentSlide + 1;
-            menu[current].classList.remove('slider__item_active');
-        }
+const slides = document.querySelectorAll('.slider__item');
+const prevSlide = document.querySelector('.slider__arrow_prev');
+const nextSlide = document.querySelector('.slider__arrow_next');
+
+let slideNum = 0;
+
+nextSlide.onclick = function () {
+    slideNum++;
+    for (let slide of Array.from(slides)) {
+        slide.className = 'slider__item';
     }
-    const sliderNext = document.body.querySelector(".slider__arrow_next");
-    sliderNext.onclick = function () {
-        const menu = document.body.querySelectorAll(".slider__item");
-        if (currentSlide >= 0) {
-            menu[currentSlide].classList.remove('slider__item_active')
-            if (currentSlide == menu.length - 1) {
-                menu[4].classList.remove('slider__item_active')
-                currentSlide = 0;
-                menu[currentSlide].classList.add('slider__item_active')
-            } else {
-                currentSlide += 1;
-                menu[currentSlide].classList.add('slider__item_active')
-                let current = currentSlide - 1;
-                menu[current].classList.remove('slider__item_active')
-            }
-        }
-    };
-})();
+    if (slideNum >= slides.length) {
+        slideNum = 0;
+    }
+    slides[slideNum].className = 'slider__item slider__item_active';
+};
+
+prevSlide.onclick = function () {
+    slideNum--;
+    for (let slide of Array.from(slides)) {
+        slide.className = 'slider__item';
+    }
+    if (slideNum < 0) {
+        slideNum = slides.length - 1;
+    }
+    slides[slideNum].className = 'slider__item slider__item_active';
+};
